@@ -1,7 +1,7 @@
 package day09_a__scanner;
 import java.util.Scanner;
 
-public class Order {
+public class UsingNext {
     /*
         - Place an order
         - Ask the user the enter the product name (String, multiple words)

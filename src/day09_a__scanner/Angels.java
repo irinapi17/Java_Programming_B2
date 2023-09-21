@@ -1,7 +1,7 @@
 package day09_a__scanner;
 import java.util.Scanner;
 
-public class Angles {
+public class Angels {
     /*
         Write a program that asks the user to enter 3 angle numbers ( can be floating numbers/decimal )
         Determine if the angles make a triangle, which means the angles add to 180.0
