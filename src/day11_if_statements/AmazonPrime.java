@@ -1,41 +1,63 @@
+
+
 package day11_if_statements;
+        /*
+        Task:
+            declare and assign a price variable
+            declare and assign a boolean - hasPrime variable
 
-public class NestedExample {
+            possible outputs:
 
+                prime member:
+                    Eligible for 2 day shipping
+
+                not prime and item price is more than or equal 25:
+                    Eligible for regular free shipping
+
+                not prime and item price is less than 25:
+                    Not eligible for free shipping. Shipping fee: 3.99
+
+         */
+
+public class AmazonPrime {
     public static void main(String[] args) {
-        boolean a = false;
-        boolean b = true;
-        boolean c = false;
+        double price = 20.0;
+        boolean hasPrime = false;
 
-        if (a) {
+        /*
+               if prime
+                    ----
 
-            System.out.println(1.1);
+               if not prime
+                    if price >
 
-            if (b) {
-                System.out.println(1.2);
-            }
-
+                    else/if pirce <
+         */
+        String message = "";
+        if (!hasPrime) {
+            message = "Eligible for 2 day shipping";
         } else {
 
-            System.out.println(2.1);
-
-            if (c) {
-                System.out.println(2.2);
+            if (price >= 25) {
+                message = "Eligible for regular free shipping";
             } else {
-                System.out.println(2.3);
+                message = "Not eligible for free shipping. Shipping fee: 3.99";
             }
 
         }
+        System.out.println(message);
 
+        System.out.println("-----------------------------");
 
-
-        if (a) {
-            System.out.println("Hello");
-
-            if (b) {
-                System.out.println("Hello 2");
-            }
+        if (hasPrime) {
+            message = "Eligible for 2 day shipping";
+        } else if (!hasPrime && price >= 25) {
+            message = "Eligible for regular free shipping";
+        } else if (!hasPrime && price < 25) {
+            message = "Not eligible for free shipping. Shipping fee: 3.99";
         }
+        System.out.println(message);
+
 
 
 
