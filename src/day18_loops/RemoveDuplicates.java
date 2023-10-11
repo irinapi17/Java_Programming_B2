@@ -15,7 +15,7 @@ public class RemoveDuplicates {
          */
 
         for (int i = 0; i < original.length(); i++) {
-            if (!unique.contains("" + original.charAt(i))) {
+            if (!unique.contains("" + original.charAt(i))) { // after first string everything becomes string
                 unique += original.charAt(i);
             }
         }
