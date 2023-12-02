@@ -1,0 +1,1329 @@
+Iryna Pyrohova
+ipishka
+Online
+
+IntelliJ
+BOT
+ — 11/22/2023 6:18 PM
+
+Java_Classroom_Files
+OnlineShopping.java
+package day38_a_abstraction_interface.shopping;
+
+public abstract class OnlineShopping extends Shopping implements Shipping {
+
+    public abstract void viewCart ();
+
+}
+
+
+// If i have a child class which is CONCRETE, how many method it has to implement
+
+DiscordBeam for IDEA-based IDEs•11/22/2023 6:04 PM
+
+Java_Classroom_Files
+Amazon.java
+package day38_a_abstraction_interface.shopping;
+//CONCRETE class
+public final class Amazon extends OnlineShopping {
+
+    @Override
+    public void viewCart() {
+        System.out.println("Viewing Amazon Cart");
+    }
+
+    @Override
+    public void payForShipping(boolean b) {
+        System.out.println(b ? "Paying for shipping" : "Free shipping");
+    }
+
+    @Override
+    public void buyItem() {
+        System.out.println("Buying item from Amazon");
+    }
+
+    @Override
+    public void returnItem() {
+        System.out.println("Returning item to Amazon");
+    }
+}
+
+
+// Amazon IS-A OnlineShopping
+// Amazon IS-A SHOPPING
+// Amazon IS-A SHIPPING
+
+DiscordBeam for IDEA-based IDEs•11/22/2023 6:18 PM
+
+Java_Classroom_Files
+Runner.java
+package day38_a_abstraction_interface.shopping;
+
+public class Runner {
+    public static void main(String[] args) {
+        Target obj1 = new Target();
+        obj1.price = 10;
+        System.out.println(obj1.price);
+        obj1.buyItem();
+        obj1.returnItem();
+        //obj1.payForShipping(true);
+
+        System.out.println();
+
+        Amazon obj2 = new Amazon();
+        obj2.price =100;
+        System.out.println(obj2.price);
+        obj2.buyItem();
+        obj2.returnItem();
+        obj2.viewCart();
+        obj2.payForShipping(true);
+
+    }
+}
+
+DiscordBeam for IDEA-based IDEs•11/22/2023 6:17 PM
+IntelliJ
+BOT
+ — 11/22/2023 6:45 PM
+
+Java_Classroom_Files
+AllowUserToSell.java
+package day38_a_abstraction_interface.shopping;
+
+public interface AllowUserToSell {
+
+    void sell ();
+
+}
+
+DiscordBeam for IDEA-based IDEs•11/22/2023 6:32 PM
+
+Java_Classroom_Files
+ConsumerApp.java
+package day38_a_abstraction_interface.shopping;
+// We are passing the methods from Shipping and AllowUserToSell interfaces to the ConsumerApp interface
+
+// going (inheriting) from interface to interface, we use "extends".
+// NOte: Remember these are interface, they do not follow the smae rules as classes
+// We CAN extend multiple interface
+public interface ConsumerApp extends AllowUserToSell, Shipping {
+
+}
+
+
+// Here we are implementing two interface to a class: AllowUserToSell, Shipping
+abstract class TestA implements AllowUserToSell, Shipping {
+
+}
+
+// Here I am implementing ConsumerApp interface which also inherits from interfaces called: AllowUserToSell, Shipping
+abstract class TestB implements ConsumerApp {
+
+}
+
+
+// interface can "extends" multiple interface
+// class can "extends" ONE class
+// class can "implements" multiple interfaces
+
+DiscordBeam for IDEA-based IDEs•11/22/2023 6:44 PM
+IntelliJ
+BOT
+ — 11/22/2023 7:08 PM
+
+Java_Classroom_Files
+Mac.java
+package day38_a_abstraction_interface.interface_methods;
+// Interface - > cannot be instantiated / cannot create object
+// inst variables are - > CONSTANTS / public static final
+// all methods with return type and name and with no body -- >  is public abstract methods.
+public interface Mac {
+
+    String NAME = "Mac"; //public static final
+
+    String OS = "IOS";
+
+    void turnOn();  // public abstract
+
+    // Q: Is there a way to have a method in interface which has a body?
+    // A: yes, there 2 options.
+
+
+    //Option 1: is "public static" method
+    public static void company(){
+        System.out.println("Apple");
+        System.out.println("HQ is in LA");
+        System.out.println("New release in November");
+    }
+
+
+    //Option 2: is "public default" method
+    // NOTE: the "default" here is NOT the access modifier "default"
+    public default void facetime() {
+        System.out.println("Opening facetime");
+        System.out.println("Calling facetime");
+    }
+
+
+
+
+
+}
+
+DiscordBeam for IDEA-based IDEs•11/22/2023 7:03 PM
+package day38_a_abstraction_interface.interface_methods;
+
+public class MacbookPro implements Mac{
+    public void turnOn() {
+        System.out.println("Macbook is turning on");
+    }
+Expand
+MacbookPro.java
+2 KB
+
+Java_Classroom_Files
+MacbookPro.java
+View the file MacbookPro.java on Discord
+
+DiscordBeam for IDEA-based IDEs•11/22/2023 7:06 PM
+
+Java_Classroom_Files
+Animal.java
+package day38_a_abstraction_interface.animal;
+
+public abstract class Animal {
+
+    String species;
+
+    public abstract void eat();
+
+}
+
+DiscordBeam for IDEA-based IDEs•11/22/2023 5:32 PM
+feyruz_loopcamp — 11/22/2023 7:44 PM
+@here is the practice for interface
+IMPORTANT!
+
+	-Do NOT create these tasks on Java_Programming_B1 project.
+	-Use the one you created for practicing. If you have not created one. You can create a new project and name it Practice_Programming
+
+    -Add a package called day37_tasks in src folder
+Expand
+4._Abstraction_-_practice_2.txt
+3 KB
+IntelliJ
+BOT
+ — 11/25/2023 7:35 AM
+
+Java_Classroom_Files
+Animal.java
+package day39_a_polymorphism.animal;
+
+public class Animal {
+
+    String name;
+
+    public void eat () {
+        System.out.println("ANIMAL is eating");
+    }
+
+}
+
+DiscordBeam for IDEA-based IDEs•11/25/2023 6:55 AM
+
+Java_Classroom_Files
+Reptile.java
+package day39_a_polymorphism.animal;
+
+public class Reptile extends Animal {
+
+    int numberOfClaws;
+
+
+    @Override
+    public void eat () {
+        System.out.println("REPTILE is eating");
+    }
+}
+
+DiscordBeam for IDEA-based IDEs•11/25/2023 7:30 AM
+
+Java_Classroom_Files
+Lizard.java
+package day39_a_polymorphism.animal;
+
+public class Lizard extends Reptile {
+
+    String skinColor;
+
+    @Override
+    public void eat () {
+        System.out.println("LIZARD is eating");
+    }
+
+}
+
+DiscordBeam for IDEA-based IDEs•11/25/2023 7:30 AM
+package day39_a_polymorphism.animal;
+
+public class Wild {
+    public static void main(String[] args) {
+        //ALL POSSIBLE REFERENCES
+Expand
+Wild.java
+3 KB
+
+Java_Classroom_Files
+Wild.java
+View the file Wild.java on Discord
+
+DiscordBeam for IDEA-based IDEs•11/25/2023 7:33 AM
+IntelliJ
+BOT
+ — 11/25/2023 8:57 AM
+
+Java_Classroom_Files
+Clothes.java
+package day39_a_polymorphism.clothes;
+
+public abstract class Clothes {
+    public abstract void wear();
+
+
+}
+
+DiscordBeam for IDEA-based IDEs•11/25/2023 8:24 AM
+
+Java_Classroom_Files
+HasHood.java
+package day39_a_polymorphism.clothes;
+
+public interface HasHood {
+
+    //String NAME = "Hoodie";  // public static final
+    void putOnHood (); // public abstract
+}
+
+DiscordBeam for IDEA-based IDEs•11/25/2023 8:04 AM
+
+Java_Classroom_Files
+TShirt.java
+package day39_a_polymorphism.clothes;
+
+public class TShirt extends Clothes {
+
+    @Override
+    public void wear (){
+        System.out.println("Wearing a t-shirt");
+    }
+
+}
+
+DiscordBeam for IDEA-based IDEs•11/25/2023 7:58 AM
+
+Java_Classroom_Files
+Jacket.java
+package day39_a_polymorphism.clothes;
+
+public class Jacket extends Clothes implements HasHood {
+
+    @Override
+    public void wear () {
+        System.out.println("Wearing a jacket");
+    }
+
+
+    @Override
+    public void putOnHood () {
+        System.out.println("Putting on the jacket hood");
+    }
+
+
+
+
+}
+
+DiscordBeam for IDEA-based IDEs•11/25/2023 8:06 AM
+package day39_a_polymorphism.clothes;
+
+import day39_a_polymorphism.animal.Animal;
+
+public class Store {
+    public static void main(String[] args) {
+Expand
+Store.java
+2 KB
+
+Java_Classroom_Files
+Store.java
+View the file Store.java on Discord
+
+DiscordBeam for IDEA-based IDEs•11/25/2023 8:57 AM
+IntelliJ
+BOT
+ — 11/25/2023 9:14 AM
+
+Java_Classroom_Files
+A.java
+A
+
+DiscordBeam for IDEA-based IDEs•11/25/2023 9:12 AM
+
+Java_Classroom_Files
+B.java
+package day39_a_polymorphism.covariant;
+
+
+import day39_a_polymorphism.animal.Animal;
+
+public class B extends A {
+
+    //A method that returns A can be overridden as a method that return B since B is a A
+    @Override
+    public B test() {
+        return new B();
+    }
+
+
+    @Override
+    public void test2 () {
+        System.out.println("Overrided in child");
+    }
+}
+
+DiscordBeam for IDEA-based IDEs•11/25/2023 9:12 AM
+
+Java_Classroom_Files
+A.java
+package day39_a_polymorphism.covariant;
+
+public class A {
+
+
+    public A test() {
+        return new A();
+    }
+
+
+    public void test2 () {
+
+    }
+
+
+
+
+}
+
+DiscordBeam for IDEA-based IDEs•11/25/2023 9:14 AM
+
+Java_Classroom_Files
+B.java
+package day39_a_polymorphism.covariant;
+
+
+import day39_a_polymorphism.animal.Animal;
+
+public class B extends A {
+
+    //A method that returns A can be overridden as a method that return B since B is a A
+    @Override
+    public B test() {
+        return new B();
+    }
+
+
+    @Override
+    public void test2 () {
+        System.out.println("Overrided in child");
+    }
+}
+
+DiscordBeam for IDEA-based IDEs•11/25/2023 9:14 AM
+
+Java_Classroom_Files
+B.java
+package day39_a_polymorphism.covariant;
+
+
+import day39_a_polymorphism.animal.Animal;
+
+import java.util.ArrayList;
+
+public class B extends A {
+
+    //A method that returns A can be overridden as a method that return B since B is a A
+    @Override
+    public B test() {
+        return new B();
+    }
+
+
+    @Override
+    public void test2 () {
+        System.out.println("Overrided in child");
+    }
+
+
+
+
+    // The code below if to show that we can store different objects under SAME reference
+    public static void main(String[] args) {
+
+        A [] arr = {new A(), new B()};
+        // A obj1 = new A();
+        // A obj2 = new B();
+
+        ArrayList <A> list =  new ArrayList<>();
+        list.add(new A());
+        list.add(new B());
+
+    }
+
+}
+
+DiscordBeam for IDEA-based IDEs•11/25/2023 9:14 AM
+IntelliJ
+BOT
+ — 11/25/2023 11:27 AM
+
+Java_Classroom_Files
+Book.java
+package day39_a_polymorphism.book;
+
+public abstract class Book {
+
+    String name;
+
+
+
+    public abstract void read();
+}
+
+DiscordBeam for IDEA-based IDEs•11/25/2023 10:46 AM
+
+Java_Classroom_Files
+Downloadable.java
+package day39_a_polymorphism.book;
+
+public interface Downloadable {
+
+    void download(); // public abstract
+}
+
+DiscordBeam for IDEA-based IDEs•11/25/2023 10:39 AM
+
+Java_Classroom_Files
+EBook.java
+package day39_a_polymorphism.book;
+
+public abstract class EBook extends Book implements Downloadable {
+
+    double size; //mg
+
+    public abstract void open();
+
+
+}
+
+DiscordBeam for IDEA-based IDEs•11/25/2023 10:59 AM
+
+Java_Classroom_Files
+JavaTextBook.java
+package day39_a_polymorphism.book;
+
+public class JavaTextBook extends EBook {
+
+    boolean isFun;
+
+    @Override
+    public void read () {
+        System.out.println("Reading Java Text Book");
+    }
+
+    public void download(){
+        System.out.println("Downloading Java Text Book");
+    }
+
+    public void open () {
+        System.out.println("Opening Java Text Book");
+    }
+}
+
+DiscordBeam for IDEA-based IDEs•11/25/2023 10:47 AM
+package day39_a_polymorphism.book;
+
+import day36_inheritance.hiding.B;
+
+public class Library {
+    public static void main(String[] args) {
+Expand
+Library.java
+3 KB
+
+Java_Classroom_Files
+Library.java
+View the file Library.java on Discord
+
+DiscordBeam for IDEA-based IDEs•11/25/2023 11:19 AM
+IntelliJ
+BOT
+ — 11/25/2023 12:08 PM
+
+Java_Classroom_Files
+FirstTry.java
+package day39_b_exception.learn_exception;
+
+import java.util.Scanner;
+
+public class FirstTry {
+    public static void main(String[] args) {
+
+        System.out.println("First Line");
+
+
+        try {
+            //Scanner input = new Scanner(System.in);
+            //String word = input.next();
+            String word = "word";
+            System.out.println(word.charAt(4));
+        } catch (Exception e) {
+            System.out.println("Exception message: Exception Happened. Come back and check");
+        }
+
+
+        System.out.println("Last Line");
+
+    }
+}
+
+DiscordBeam for IDEA-based IDEs•11/25/2023 12:05 PM
+IntelliJ
+BOT
+ — 11/29/2023 4:38 PM
+
+Java_Classroom_Files
+FirstTry.java
+package day39_b_exception.learn_exception;
+
+import java.util.Scanner;
+
+public class FirstTry {
+    public static void main(String[] args) {
+
+        System.out.println("First Line");
+
+        try {
+            //Scanner input = new Scanner(System.in);
+            //String word = input.next();
+            String word = "word";
+            System.out.println(word.charAt(4));
+        } catch (Exception e) {
+            System.out.println("Exception message: Exception Happened. Come back and check");
+            e.printStackTrace();
+            //System.out.println(e.getMessage());
+        }
+
+        System.out.println("Last Line");
+
+    }
+}
+
+DiscordBeam for IDEA-based IDEs•11/29/2023 4:37 PM
+IntelliJ
+BOT
+ — 11/29/2023 5:01 PM
+package day39_b_exception.learn_exception;
+
+public class SecondTry {
+    public static void main(String[] args) {
+
+Expand
+SecondTry.java
+2 KB
+
+Java_Classroom_Files
+SecondTry.java
+View the file SecondTry.java on Discord
+
+DiscordBeam for IDEA-based IDEs•11/29/2023 5:01 PM
+IntelliJ
+BOT
+ — 11/29/2023 5:32 PM
+
+Java_Classroom_Files
+ThirdTry.java
+package day39_b_exception.learn_exception;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class ThirdTry {
+    public static void main(String[] args) {
+
+        Scanner input  = new Scanner(System.in);
+
+
+        try {
+            System.out.print("Enter number 1: ");
+            int num1 = input.nextInt(); // 5
+
+            System.out.print("Enter number 2: ");
+            int num2 = input.nextInt();  // 2  | 0
+
+
+            System.out.println("Division of num1/num2 is equal: " + num1/num2); // 5/2 =  2  | 5/0
+
+        } catch (InputMismatchException obj) {
+            obj.printStackTrace();
+        } catch (ArithmeticException obj) {
+            obj.printStackTrace();
+        }
+
+
+
+        // Possibilities of exceptions:
+        //  1. MissMatchException -- > Five
+        //  2. ArithmeticException
+
+
+        System.out.println("DONE");
+
+
+
+    }
+}
+
+DiscordBeam for IDEA-based IDEs•11/29/2023 5:28 PM
+IntelliJ
+BOT
+ — 11/29/2023 5:41 PM
+
+Java_Classroom_Files
+ThirdTry.java
+package day39_b_exception.learn_exception;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class ThirdTry {
+    public static void main(String[] args) {
+
+        Scanner input  = new Scanner(System.in);
+
+
+        try {
+            System.out.print("Enter number 1: ");
+            int num1 = input.nextInt(); // 5
+
+            System.out.print("Enter number 2: ");
+            int num2 = input.nextInt();  // 2  | 0
+
+
+            System.out.println("Division of num1/num2 is equal: " + num1/num2); // 5/2 =  2  | 5/0
+
+        } catch (InputMismatchException obj) {
+            obj.printStackTrace();
+        } catch (ArithmeticException obj) {
+            System.out.println(obj.getMessage());
+        } finally {
+            System.out.println("FINALLY BLOCK");
+            input.close();
+        }
+
+
+
+        // Possibilities of exceptions:
+        //  1. MissMatchException -- > Five
+        //  2. ArithmeticException
+
+
+        System.out.println("DONE");
+
+
+
+    }
+}
+
+DiscordBeam for IDEA-based IDEs•11/29/2023 5:40 PM
+
+Java_Classroom_Files
+ThirdTry.java
+package day39_b_exception.learn_exception;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class ThirdTry {
+    public static void main(String[] args) {
+
+        Scanner input  = new Scanner(System.in);
+
+
+        try {
+            System.out.print("Enter number 1: ");
+            int num1 = input.nextInt(); // 5
+
+            System.out.print("Enter number 2: ");
+            int num2 = input.nextInt();  // 2  | 0
+
+
+            System.out.println("Division of num1/num2 is equal: " + num1/num2); // 5/2 =  2  | 5/0
+
+        } catch (InputMismatchException obj) {
+            obj.printStackTrace();
+        } catch (ArithmeticException obj) {
+            System.out.println(obj.getMessage());
+        } finally {
+            System.out.println("FINALLY BLOCK");
+            input.close();
+        }
+
+
+
+        // Possibilities of exceptions:
+        //  1. MissMatchException -- > Five
+        //  2. ArithmeticException
+
+
+        System.out.println("DONE");
+
+
+
+    }
+}
+
+DiscordBeam for IDEA-based IDEs•11/29/2023 5:43 PM
+IntelliJ
+BOT
+ — 11/29/2023 5:58 PM
+
+Java_Classroom_Files
+FourthTry.java
+package day39_b_exception.learn_exception;
+
+public class FourthTry {
+    public static void main(String[] args) {
+
+        try {
+            System.out.println("Start");
+            Thread.sleep(-2000);
+            System.out.println("Finish");
+
+
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
+    }
+}
+
+DiscordBeam for IDEA-based IDEs•11/29/2023 5:57 PM
+IntelliJ
+BOT
+ — 11/29/2023 6:15 PM
+
+Java_Classroom_Files
+TryWithInheritance.java
+package day40_exception;
+
+/**
+ * Parent class cannot be before the child class
+ */
+public class TryWithInheritance {
+    public static void main(String[] args) {
+
+        try {
+
+
+        } catch (IndexOutOfBoundsException e){
+
+        } catch (RuntimeException e) {
+
+        } catch (Exception e){
+
+        }
+
+
+        // Possible reference for IndexOutOfBoundsException object
+
+        IndexOutOfBoundsException e = new IndexOutOfBoundsException();
+        RuntimeException e2 = new IndexOutOfBoundsException();
+        Exception e3 = new IndexOutOfBoundsException();
+
+
+
+
+
+
+
+    }
+
+}
+
+DiscordBeam for IDEA-based IDEs•11/29/2023 6:15 PM
+
+Java_Classroom_Files
+UsingThrows.java
+Thread.sleep(2000);
+
+DiscordBeam for IDEA-based IDEs•11/29/2023 6:18 PM
+IntelliJ
+BOT
+ — 11/29/2023 6:51 PM
+
+Java_Classroom_Files
+Person.java
+package day40_exception.throws_keyword;
+
+public class Person {
+
+    private String name;
+
+   private int age;
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) throws Exception {
+        if (name.isEmpty() || name == null) {
+            //System.out.println("You cannot assign empty string");
+            throw new Exception("You cannot assign empty string");
+        }
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        if (age < 0 || age > 120 ){
+            throw new IllegalArgumentException("Age should be more than 0 or less than 120");
+        }
+        this.age = age;
+    }
+}
+
+DiscordBeam for IDEA-based IDEs•11/29/2023 6:50 PM
+
+Java_Classroom_Files
+UsingPerson.java
+package day40_exception.throws_keyword;
+
+public class UsingPerson {
+    public static void main(String[] args)  {
+
+
+        Person obj = new Person();
+
+        //obj.setName("Tom Jerry");
+
+        try {
+            obj.setName("Tom Jerry");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        try {
+            obj.setAge(-50);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println(obj.getName()); //--> ""
+        System.out.println("DONE");
+
+
+
+
+
+
+    }
+}
+
+DiscordBeam for IDEA-based IDEs•11/29/2023 6:49 PM
+
+Java_Classroom_Files
+UsingThrows.java
+package day40_exception;
+
+public class UsingThrows {
+
+    public static void main(String[] args) throws InterruptedException {
+
+        Thread.sleep(2000);
+
+    }
+
+
+}
+
+DiscordBeam for IDEA-based IDEs•11/29/2023 6:18 PM
+IntelliJ
+BOT
+ — 11/29/2023 7:17 PM
+
+Java_Classroom_Files
+Bank.java
+package day40_exception.bank;
+
+public class Bank {
+
+    double balance;
+
+
+    // login - username & password
+    public void login (String username, String password) throws InvalidCredentialsException {
+
+        if(!username.equals("loopcamp")){
+            //System.out.println("Invalid username");
+            throw new InvalidCredentialsException ("Invalid Username");
+        }
+
+
+        if (!password.equals("123456!@#")) {
+            throw new InvalidCredentialsException ("Invalid Password");
+        }
+
+    }
+
+
+
+
+    // withdraw -- >  single parameter
+   //TODO: manage the code to give the CUSTOM exception called NotEnoughBalanceException
+    // Make is run time exception not compile
+    public void withdraw(double withdrawalAmount) throws NotEnoughBalanceException {
+        if(withdrawalAmount>balance){
+            throw new NotEnoughBalanceException("Not enough funds");
+        }
+    }
+
+}
+
+DiscordBeam for IDEA-based IDEs•11/29/2023 7:16 PM
+
+Java_Classroom_Files
+InvalidCredentialsException.java
+package day40_exception.bank;
+
+public class InvalidCredentialsException extends Exception {
+
+    public InvalidCredentialsException (String message) {
+        super(message);
+    }
+
+
+}
+
+DiscordBeam for IDEA-based IDEs•11/29/2023 7:07 PM
+
+Java_Classroom_Files
+NotEnoughBalanceException.java
+package day40_exception.bank;
+//TODO: manage the code to give the CUSTOM exception
+public class NotEnoughBalanceException extends RuntimeException{
+    public NotEnoughBalanceException(String message) {
+        super(message);
+    }
+}
+
+DiscordBeam for IDEA-based IDEs•11/29/2023 7:16 PM
+
+Java_Classroom_Files
+UserAccounts.java
+package day40_exception.bank;
+
+public class UserAccounts {
+    public static void main(String[] args)  {
+
+        Bank accountOne = new Bank();
+        accountOne.balance = 100_000;
+
+
+
+        try {
+            accountOne.login("loopcamp", "123456!");
+        } catch (InvalidCredentialsException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            accountOne.withdraw(120_000);
+        }catch (NotEnoughBalanceException e){
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("DONE");
+
+    }
+
+
+}
+
+DiscordBeam for IDEA-based IDEs•11/29/2023 7:17 PM
+IntelliJ
+BOT
+ — Yesterday at 5:11 PM
+package day41_collection.recap_try_catch;
+
+import java.util.ArrayList;
+
+public class RecapTryCatch { //IndexOutOfBoundsException | NullPointerException
+    public static void main(String[] args)  {
+Expand
+RecapTryCatch.java
+3 KB
+
+Java_Classroom_Files
+RecapTryCatch.java
+View the file RecapTryCatch.java on Discord
+
+DiscordBeam for IDEA-based IDEs•Yesterday at 5:07 PM
+IntelliJ
+BOT
+ — Yesterday at 6:18 PM
+New Topic
+
+
+        Collection
+
+            Data Structure: a way to handle / group multiple data
+Expand
+Collection_intro.txt
+8 KB
+
+Java_Classroom_Files
+Collection_intro.txt
+View the file Collection_intro.txt on Discord
+
+DiscordBeam for IDEA-based IDEs•Yesterday at 6:18 PM
+package day41_collection.collect;
+
+import java.util.*;
+
+public class ListObjects {
+    public static void main(String[] args) {
+Expand
+ListObjects.java
+2 KB
+
+Java_Classroom_Files
+ListObjects.java
+View the file ListObjects.java on Discord
+
+DiscordBeam for IDEA-based IDEs•Yesterday at 6:18 PM
+IntelliJ
+BOT
+ — Yesterday at 6:52 PM
+package day41_collection.collect;
+
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.TreeSet;
+Expand
+SetObjects.java
+2 KB
+
+Java_Classroom_Files
+SetObjects.java
+View the file SetObjects.java on Discord
+
+DiscordBeam for IDEA-based IDEs•Yesterday at 6:49 PM
+IntelliJ
+BOT
+ — Yesterday at 7:11 PM
+package day41_collection.collect;
+
+import java.util.Stack;
+
+public class StackObjects {
+    public static void main(String[] args) {
+Expand
+StackObjects.java
+2 KB
+
+Java_Classroom_Files
+StackObjects.java
+View the file StackObjects.java on Discord
+
+DiscordBeam for IDEA-based IDEs•Yesterday at 7:11 PM
+package day41_collection.collect;
+
+import java.util.Stack;
+
+public class StackObjects {
+    public static void main(String[] args) {
+Expand
+StackObjects.java
+2 KB
+
+Java_Classroom_Files
+StackObjects.java
+View the file StackObjects.java on Discord
+
+DiscordBeam for IDEA-based IDEs•Yesterday at 7:11 PM
+﻿
+New Topic
+
+
+        Collection
+
+            Data Structure: a way to handle / group multiple data
+
+                1)Array:    store data that has similar data types, but the size is fixed. / built in fracture not object?!
+
+                2)Collection:  different types that handle and manipulate data differently.
+
+                *Collection Framework:
+                    - A group of interfaces and classes that define how the individual Collection will work.
+                        (How data structure will handle data)
+                    -All collection can only hold object types, not primitives (but we can wrap it and use it)
+
+                Main interfaces of Collection Framework:
+                    -Collection: the parent of all Collection types: It defines the main actions of collection.
+                        Ex: add, remove, size
+                    -List:  Ordered (has index), allows duplicates.
+                    -Set:   Unordered (does not have index), not allow duplicates.
+
+                *IQ:  What is the difference between Collection and Collections?
+                    Collection is the interface that all Collection objects (classes that implements) implement.
+                    Collections is a utility class, that has some useful methods that work with collection objects.
+                        -this is not a part of the Collection framework. (frequncy( ), max( ), min( ))
+
+                        We also used Arrays class -- utility class for array objects.
+
+-----------------------------------------------------------------------
+New Topic
+
+    Common Behavior
+        Collection      -Provide base guideline for all other collections, Parent interface
+            List:       -Ordered Collection(indexed), May contain duplicate
+            Set         -A Collection that cannot contain duplicate elements, unordered
+            Queue       -A Collection that Provide First-in-First-Out or Last-In-First-Out structure
+
+            Map         -A Collection of Key-Value pairs.
+-----------------------------------------------------------------------
+New Topic
+
+Classes that implement List Interface:
+
+    ArrayList
+        -uses dynamic arrays in the background
+        -It implemetns List Interface
+        -ADD, REMOVE: these methods works slower because it has to go through manipulation and copying the arrays.
+        -GET: Reading from ArrayList index is faster, because it is reading from array.
+        -Keeps insertion order
+        -Allows duplicates
+
+    LinkedList
+        -internally uses doubly linked logic (NODES objec that refers to each other).
+        -Since, it does not work with indexes, ADDing and REMOVING elements is faster.
+        -ADD, REMOVE: Adding and removing is faster, Pop in a new node or Pop out a node is fast
+        -GET: Reading from LinkedList index is slower, because it need iterate through the nodes.
+        -Keeps insertion order
+        -Allows duplicates
+
+    -Vector:    -Legacy version (Older version) of ArrayList. It did the things that ArrayList does.
+                -Re-sizeable collection, but it is synchronized.
+                    Synchronized: thread-safe:  means that cannot access multiple threads at the same
+                    time. But ArrayList is not thread-safe, meaning we can access at the same time.
+                -Since there is an extra layer of security, it is slower.
+
+
+-----------------------------------------------------------------------
+
+Classes that implement Set Interface:
+
+    -HashSet:       -Not ordered and does NOT allow duplicates
+                    -It is fast and efficient way to work with the data.
+                    -maintenance random order (we don’t need worry about how it handled)
+                      Or order is not guaranteed
+                    -No indexes
+                    -Accepts null values
+
+    -LinkedHashSet  -Not ordered and does NOT allow duplicates
+                    -Is a data structure that maintenance insertion order
+                    -No indexes
+                    -Accepts null values
+
+    -TreeSet:       -Not ordered and does NOT allow duplicates
+                    -implements an interface called “SortedSet” which extends “Set”
+                    -The elements of a TrreeSet are put into the natural order (sorted)/Ascending
+                    -TreeSet does not allow null elements. (will give an exception)
+                    -No indexes
+
+
+-----------------------------------------------------------------------
+
+Classes that implement Queue:
+
+    PriorityQueue: data structure stores elements randomly. null is not allowed (B26 ??)
+    PriorityQueue:      -data structures that stores element in natural order (small to large)
+                -Does NOT allow null elements
+                -Duplicates are allowed
+                -.poll( );
+
+    ArrayDeque      -implements Deque interface
+                -Does not allow null elements.
+                -Works faster than ArrayList.
+
+    Deque (Interface):  -Allowing access to elements from the beginning or end of the collection.
+                .addFirst( ), .addLast( );
+                Inherits Queue
+        -> LinkedList is also implementing this interface
+
+
+            Methods:
+                .add( );        |   .offer ( )  -they both do the same thing
+                .remove( );     |   .poll ( )
+                .element ( );   |   .peek ( )
+
+                -The methods on the left side, add( ), remove ( ), element ( ) will cause exception
+                when they fail.
+                -The methods on the right side, offer( ), poll ( ), peek ( ) will return a value. More
+                specifically, they return null. And we cannot have null
+
+-----------------------------------------------------------------------
+
+Stack Interface
+
+    LIFO - Last in Last out
+                Book3
+                Book2
+                Book1
+
+                So if you want to remove a book, you from the top and take Book3, leaving:
+                Book2
+                Book1
+
+                You want to another one
+                Book4
+                Book2
+                Book1
+
+                So, Book4 would be the one to leave now.
+    Methods:
+
+        .push( )    // add on top of the stack.
+        .peek( )    // only shows what is at the top
+                //also, can be used in sout to show what was    removed
+        .pop( )     //removes whatever element at the top of the stack and returns it
+
+    Note:   Difference between .add( ) and .push( ) ?
+            Both functions the same, puts the element at the end.
+
+            -add( ) -comes from collection interface, it returns Boolean type, you can use index
+            -push( )-comes from stack class, and it returns the object that was pushed.
+                -when using Stack, you should use push( )
+                -Also, think about the reference type of the object
+
+        Difference between .get( ) and .pop( )
+
+
+
+-----------------------------------------------------------------------
